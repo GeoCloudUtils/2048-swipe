@@ -30,49 +30,38 @@ public class NodeObject : MonoBehaviour
 
     private void SetColor(int value)
     {
-        Color color = new Color(1f, 0.42f, 0.42f);
+        Color color = new Color(0.776f, 0.714f, 0.667f); // Default color
 
         switch (value)
         {
             case 2:
-                color = new Color(0.14f, 0.62f, 1f);
-                break;
             case 4:
-                color = new Color(0.14f, 0.62f, 1f);
+                color = new Color(0.929f, 0.886f, 0.855f); // Light gray
                 break;
             case 8:
-                color = new Color(1f, 0.45f, 0f);
-                break;
             case 16:
-                color = new Color(1f, 0.45f, 0f);
+                color = new Color(0.929f, 0.875f, 0.773f); // Light brown
                 break;
             case 32:
-                color = new Color(1f, 0.42f, 0.42f);
-                break;
             case 64:
-                color = new Color(1f, 0.42f, 0.42f);
+                color = new Color(0.957f, 0.678f, 0.478f); // Light orange
                 break;
             case 128:
-                color = new Color(1f, 0.35f, 0.35f);
-                break;
             case 256:
-                color = new Color(1f, 0.35f, 0.35f);
+                color = new Color(0.957f, 0.573f, 0.412f); // Light orange
                 break;
             case 512:
-                color = new Color(1f, 0.15f, 0.15f);
-                break;
             case 1024:
-                color = new Color(1f, 0.15f, 0.15f);
+                color = new Color(0.957f, 0.427f, 0.216f); // Light orange
                 break;
             case 2048:
-                color = new Color(1f, 0, 0);
-                break;
             case 4096:
-                color = new Color(1f, 0, 0);
+                color = new Color(0.957f, 0.290f, 0.290f); // Light red
                 break;
         }
         blockImage.color = color;
     }
+
 
     public void InitializeFirstValue()
     {

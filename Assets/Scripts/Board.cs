@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class Board : MonoBehaviour
@@ -43,12 +44,14 @@ public class Board : MonoBehaviour
     public RectTransform realNodeRect;
 
     public event Action<int> OnCombine;
+    public event Action OnGameOverAction;
 
     private bool isRotating;
 
     public void OnGameOver()
     {
         Debug.Log("Game Over!!!!");
+        OnGameOverAction?.Invoke();
     }
 
     private void RotatePanel(float angle)
@@ -162,6 +165,24 @@ public class Board : MonoBehaviour
         node.value = nodeObj.Value;
         node.realNodeObj = nodeObj;
         node.realNodeObj.SetAngle(transform.rotation.z);
+        //Vector3 currentRotation = this.transform.eulerAngles;
+        //Vector3 newRotation = new Vector3(currentRotation.x, currentRotation.y, Mathf.RoundToInt(currentRotation.z));
+        //if (newRotation.z == 0 || newRotation.z == 360f)
+        //{
+        //    MoveTo(Node.Direction.DOWN);
+        //}
+        //else if (newRotation.z == 90f)
+        //{
+        //    MoveTo(Node.Direction.LEFT);
+        //}
+        //else if (newRotation.z == 180f)
+        //{
+        //    MoveTo(Node.Direction.UP);
+        //}
+        //else
+        //{
+        //    MoveTo(Node.Direction.RIGHT);
+        //}
     }
 
     public void Combine(Node from, Node to)

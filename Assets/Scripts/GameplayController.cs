@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +8,11 @@ public class GameplayController : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text recordText;
-    [SerializeField] private Button newGameButton;
+
+    [SerializeField] private Button reloadButton;
+    [SerializeField] private Button tryAgainButton;
+
+    [SerializeField] private GameObject gameOverPanel;
 
     [SerializeField] private Board board;
 
@@ -18,12 +20,19 @@ public class GameplayController : MonoBehaviour
 
     public void Start()
     {
-        scoreText.SetText("score\n" + score);
-        recordText.SetText("record\n" + PlayerPrefs.GetInt("RECORD", 0).ToString());
+        scoreText.SetText("SCORE\n" + score);
+        recordText.SetText("HIGH SCORE\n" + PlayerPrefs.GetInt("RECORD", 0).ToString());
 
         board.OnCombine += OnCombine;
+        board.OnGameOverAction += GameOver;
 
-        newGameButton.onClick.AddListener(StartNewGame);
+        reloadButton.onClick.AddListener(StartNewGame);
+        tryAgainButton.onClick.AddListener(StartNewGame);
+    }
+
+    private void GameOver()
+    {
+        gameOverPanel.SetActive(true);
     }
 
     private void StartNewGame()
@@ -34,12 +43,12 @@ public class GameplayController : MonoBehaviour
     private void OnCombine(int value)
     {
         score += value;
-        scoreText.SetText("score\n" + score.ToString());
+        scoreText.SetText("SCORE\n" + score.ToString());
         int record = PlayerPrefs.GetInt("RECORD", 0);
         if (record <= score)
         {
-            recordText.SetText("record\n" + score.ToString());
-            PlayerPrefs.SetInt("RECORD", score);
+            recordText.SetText("SCORE\n" + score.ToString());
+            PlayerPrefs.SetInt("HIGH SCORE", score);
         }
     }
 }
